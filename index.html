@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🧩 Mindset Check: Recovery Edition — Profiles (Set 1)</title>
+  <meta name="description" content="Interactive profile cards for teaching recovery mindsets with humor and clinical depth." />
+  <style>
+    body{background:#0b1020;color:#e8edf7;font-family:sans-serif;margin:0}
+    h1{padding:20px;text-align:center;background:#111827;color:#fff}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;padding:20px}
+    .card{background:#1f2937;padding:15px;border-radius:12px}
+    .title{font-weight:bold;font-size:18px;margin-bottom:8px}
+    .subtitle{font-size:14px;color:#9ca3af;margin-bottom:10px}
+    .box{background:#111827;padding:10px;border-radius:8px;margin:6px 0}
+    details{margin-top:8px}
+  </style>
+</head>
+<body>
+  <h1>🧩 Mindset Check: Recovery Edition</h1>
+  <div class="grid" id="grid"></div>
+
+  <script>
+    const PROFILES = [
+      {name:"Shortcut Sam",emoji:"🚀",subtitle:"Rushing recovery",
+        illusion:"Why drag this out? I should be better by next week…",
+        distortions:["Magical thinking","All-or-nothing thinking"],
+        reality:"Recovery isn’t a sprint; skipping stages causes relapse.",
+        insight:"Small, consistent reps build lasting change.",
+        prompts:["Where are you most impatient?","What skill could you gain by slowing down?","What small daily action can you repeat?"],
+        imgUrl:"images/shortcut-sam.png"},
+      {name:"Detox Debbie",emoji:"💊",subtitle:"Detox = cure",
+        illusion:"I did the hard part in detox — I’m cured.",
+        distortions:["Minimization","Short-term focus"],
+        reality:"Detox clears the body, not the triggers or habits.",
+        insight:"Detox is the reset button, not the finish line.",
+        prompts:["What tool have you learned post-detox?","Which 3 skills protect you most?","What would 30 days of aftercare look like?"],
+        imgUrl:"images/detox-debbie.png"}
+      // ... all 13 more profiles would go here ...
+    ];
+
+    function render(){
+      const grid=document.getElementById('grid');
+      grid.innerHTML='';
+      PROFILES.forEach(p=>{
+        const card=document.createElement('div');
+        card.className='card';
+        card.innerHTML=`
+          <div class="title">${p.emoji} ${p.name}</div>
+          <div class="subtitle">${p.subtitle}</div>
+          <div class="box"><strong>Illusion:</strong> ${p.illusion}</div>
+          <details><summary>Reality Check</summary><div class="box">${p.reality}</div></details>
+          <details><summary>Insight</summary><div class="box">${p.insight}</div></details>
+          <details><summary>Discussion Prompts</summary><ul>${p.prompts.map(q=>`<li>${q}</li>`).join('')}</ul></details>
+        `;
+        grid.appendChild(card);
+      });
+    }
+    render();
+  </script>
+</body>
+</html>
