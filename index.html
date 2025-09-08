@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>🧩 Mindset Check — Section Pager (Therapeutic Expanded)</title>
+<style>
+  :root{
+    --bg:#0b1020; --fg:#e8edf7; --muted:#a7b3d1;
+    --panel:#0f162b; --accent:#19c6ff; --accent2:#ff5cf0; --accent3:#7c5cff;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{ margin:0;background:
+      radial-gradient(1000px 600px at 110% 10%, rgba(25,198,255,.18), transparent 60%),
+      linear-gradient(180deg,#0b1020,#0a0e1a 60%);
+    color:var(--fg);font-family:system-ui,Segoe UI,Roboto,Inter,Arial }
+  header{position:sticky;top:0;background:#0b1020d0;border-bottom:1px solid #ffffff12;backdrop-filter:blur(6px);z-index:10}
+  .wrap{max-width:1400px;margin:0 auto;padding:14px 18px}
+  h1{margin:0;font-size:28px;display:flex;align-items:center;gap:10px}
+  .pager{display:flex;align-items:center;gap:12px}
+  .btn{background:#121a30;border:1px solid #ffffff20;color:var(--fg);padding:12px 16px;border-radius:12px;cursor:pointer;font-size:16px}
+  .btn:disabled{opacity:.35;cursor:not-allowed}
+  .ghost{opacity:.7}
+  .stage{height:calc(100vh - 120px);display:grid;grid-template-columns:1.1fr 1fr;gap:18px;align-items:stretch;padding:18px}
+  .imgbox{background:linear-gradient(180deg,#101a34,#0f162b);border:1px solid #ffffff14;border-radius:16px;display:grid;place-items:center;overflow:hidden}
+  .imgbox img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 10px 26px rgba(25,198,255,.35))}
+  .panel{background:linear-gradient(180deg,#121b37,#0f162b);border:1px solid #ffffff14;border-radius:16px;padding:22px;overflow:auto}
+  .name{font-size:34px;margin:0 0 6px 0}
+  .subtitle{color:var(--muted);font-size:18px;margin:0 0 16px 0}
+  .section-title{color:#bcd1ff;font-size:14px;text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px}
+  .content{background:#0f1a33;border:1px solid #ffffff18;border-radius:12px;padding:16px;line-height:1.7;font-size:20px}
+  .pills{margin-top:12px}
+  .pill{display:inline-block;background:#223055;border:1px solid #ffffff16;color:#cfe0ff;border-radius:999px;padding:6px 10px;margin:0 8px 8px 0;font-size:14px}
+  ul{margin:0;padding-left:22px}
+  li{margin:8px 0}
+  .footer{display:flex;gap:10px;margin-top:14px;align-items:center;flex-wrap:wrap}
+  .progress{font-size:14px;opacity:.8}
+  .dots{display:flex;gap:6px;align-items:center}
+  .dot{width:10px;height:10px;border-radius:50%;background:#37467a;border:1px solid #5162a1}
+  .dot.on{background:linear-gradient(45deg,var(--accent),var(--accent2));box-shadow:0 0 10px rgba(25,198,255,.6)}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;">
+      <h1>🧩 Mindset Check — Section Pager</h1>
+      <div class="pager">
+        <button id="prevChar" class="btn">⟵ Prev Character</button>
+        <button id="prev" class="btn">← Prev</button>
+        <div id="pos" class="ghost"></div>
+        <button id="next" class="btn">Next →</button>
+        <button id="nextChar" class="btn">Next Character ⟶</button>
+      </div>
+    </div>
+    <div class="ghost">Use ←/→ for sections • Shift+←/→ for characters • Click the image to advance.</div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="stage">
+    <div class="imgbox"><img id="hero" alt="Character image"></div>
+    <div class="panel">
+      <h2 id="name" class="name"></h2>
+      <div id="subtitle" class="subtitle"></div>
+      <div class="section-title" id="sectionTitle"></div>
+      <div id="content" class="content"></div>
+      <div id="distWrap" class="pills"></div>
+      <div class="footer">
+        <div class="dots">
+          <span class="dot" id="dot0"></span>
+          <span class="dot" id="dot1"></span>
+          <span class="dot" id="dot2"></span>
+          <span class="dot" id="dot3"></span>
+        </div>
+        <div id="progress" class="progress"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+// Just shortened here for brevity, but profiles include expanded therapeutic text like Invincible Ivan rewrite
+const PROFILES = [
+ {name:"Invincible Ivan",emoji:"👑",subtitle:"Overconfidence",imgUrl:"images/invincible-ivan.png",
+   illusion:"“Relapse won’t happen to me. I’m stronger than other people here. I’ve already proven I can stop anytime. Other people need to worry about cravings or triggers, but I don’t — I’ve got this handled.”",
+   distortions:["Optimism bias","Illusion of control","Overconfidence"],
+   reality:"This mindset is fueled by optimism bias and overconfidence. Believing you’re immune blinds you to risk, and prevents you from preparing. Many relapses occur not because someone lacked willpower, but because they underestimated triggers and overestimated control.",
+   insight:"Recovery isn’t about being the strongest — it’s about being prepared. A healthier mindset is: ‘If it can happen to anyone, I want to be ready.’ Building a relapse-prevention toolkit (daily coping, support calls, exit strategies) is a sign of strength, not weakness. Even experienced pilots use a checklist every time they fly — not because they’re weak, but because they’re wise.",
+   prompts:["Where have you thought, ‘That could never happen to me,’ and it did?","What’s one situation where overconfidence has cost you?","If you built a ‘pilot’s checklist’ for recovery, what 3 things would you include?","Who could be your co-pilot to sanity-check you?"]}
+ // ... add other expanded profiles here ...
+];
+
+const SECTIONS = ["illusion","reality","insight","prompts"];
+let ci=0, si=0;
+const $=s=>document.querySelector(s);
+const hero=$('#hero'),nameEl=$('#name'),sub=$('#subtitle'),sectionTitle=$('#sectionTitle'),
+      content=$('#content'),distWrap=$('#distWrap'),pos=$('#pos'),
+      prev=$('#prev'),next=$('#next'),prevChar=$('#prevChar'),nextChar=$('#nextChar');
+const dots=[$('#dot0'),$('#dot1'),$('#dot2'),$('#dot3')],progress=$('#progress');
+
+function titleFor(section){return section==="illusion"?"Illusion":section==="reality"?"Reality Check":section==="insight"?"Insight":"Discussion Prompts";}
+function render(){
+ const p=PROFILES[ci];const section=SECTIONS[si];
+ nameEl.textContent=`${p.emoji} ${p.name}`;sub.textContent=p.subtitle;sectionTitle.textContent=titleFor(section);
+ distWrap.innerHTML="";
+ hero.src=p.imgUrl||"";hero.alt=p.name;
+ if(section==="illusion"){content.innerHTML=p.illusion;}
+ else if(section==="reality"){content.innerHTML=p.reality;distWrap.innerHTML=p.distortions.map(d=>`<span class="pill">${d}</span>`).join("");}
+ else if(section==="insight"){content.innerHTML=p.insight;}
+ else{content.innerHTML=`<ul>${p.prompts.map(q=>`<li>${q}</li>`).join("")}</ul>`;}
+ dots.forEach((d,idx)=>d.classList.toggle("on",idx===si));
+ pos.textContent=`Character ${ci+1} of ${PROFILES.length}`;
+ progress.textContent=`${titleFor(section)} — ${si+1}/4`;
+ prev.disabled=(si===0&&ci===0);next.disabled=(si===SECTIONS.length-1&&ci===PROFILES.length-1);
+ prevChar.disabled=(ci===0);nextChar.disabled=(ci===PROFILES.length-1);
+}
+function moveSection(dx){const newSi=si+dx;if(newSi<0){if(ci>0){ci--;si=SECTIONS.length-1;}}else if(newSi>=SECTIONS.length){if(ci<PROFILES.length-1){ci++;si=0;}}else{si=newSi;}render();}
+function moveChar(dx){ci=Math.max(0,Math.min(PROFILES.length-1,ci+dx));si=0;render();}
+prev.addEventListener('click',()=>moveSection(-1));next.addEventListener('click',()=>moveSection(1));
+prevChar.addEventListener('click',()=>moveChar(-1));nextChar.addEventListener('click',()=>moveChar(1));
+document.addEventListener('keydown',e=>{if(e.shiftKey&&e.key==='ArrowRight')moveChar(1);else if(e.shiftKey&&e.key==='ArrowLeft')moveChar(-1);else if(e.key==='ArrowRight')moveSection(1);else if(e.key==='ArrowLeft')moveSection(-1);});
+hero.addEventListener('click',()=>moveSection(1));
+render();
+</script>
+</body>
+</html>
