@@ -1,0 +1,126 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>🧩 Mindset Check — Section Pager (15 x 4 screens)</title>
+<style>
+  :root{ --bg:#0b1020; --fg:#e8edf7; --muted:#a7b3d1; --panel:#0f162b; --accent:#19c6ff; --accent2:#ff5cf0; }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;background:
+      radial-gradient(1000px 600px at 110% 10%, rgba(25,198,255,.18), transparent 60%),
+      linear-gradient(180deg,#0b1020,#0a0e1a 60%);
+    color:var(--fg);font-family:system-ui,Segoe UI,Roboto,Inter,Arial
+  }
+  header{position:sticky;top:0;background:#0b1020d0;border-bottom:1px solid #ffffff12;backdrop-filter:blur(6px);z-index:10}
+  .wrap{max-width:1400px;margin:0 auto;padding:14px 18px}
+  h1{margin:0;font-size:28px;display:flex;align-items:center;gap:10px}
+  .pager{display:flex;align-items:center;gap:12px}
+  .btn{background:#121a30;border:1px solid #ffffff20;color:var(--fg);padding:12px 16px;border-radius:12px;cursor:pointer;font-size:16px}
+  .btn:disabled{opacity:.35;cursor:not-allowed}
+  .ghost{opacity:.7}
+  .stage{height:calc(100vh - 120px);display:grid;grid-template-columns:1.1fr 1fr;gap:18px;align-items:stretch;padding:18px}
+  .imgbox{background:linear-gradient(180deg,#101a34,#0f162b);border:1px solid #ffffff14;border-radius:16px;display:grid;place-items:center;overflow:hidden}
+  .imgbox img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 10px 26px rgba(25,198,255,.35))}
+  .panel{background:linear-gradient(180deg,#121b37,#0f162b);border:1px solid #ffffff14;border-radius:16px;padding:22px;overflow:auto}
+  .name{font-size:34px;margin:0 0 6px 0}
+  .subtitle{color:var(--muted);font-size:18px;margin:0 0 16px 0}
+  .section-title{color:#bcd1ff;font-size:14px;text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px}
+  .content{background:#0f1a33;border:1px solid #ffffff18;border-radius:12px;padding:16px;line-height:1.7;font-size:20px}
+  .pills{margin-top:12px}
+  .pill{display:inline-block;background:#223055;border:1px solid #ffffff16;color:#cfe0ff;border-radius:999px;padding:6px 10px;margin:0 8px 8px 0;font-size:14px}
+  ul{margin:0;padding-left:22px}
+  li{margin:8px 0}
+  .footer{display:flex;gap:10px;margin-top:14px;align-items:center;flex-wrap:wrap}
+  .progress{font-size:14px;opacity:.8}
+  .dots{display:flex;gap:6px;align-items:center}
+  .dot{width:10px;height:10px;border-radius:50%;background:#37467a;border:1px solid #5162a1}
+  .dot.on{background:linear-gradient(45deg,var(--accent),var(--accent2));box-shadow:0 0 10px rgba(25,198,255,.6)}
+  @media (max-width: 1000px){
+    .stage{grid-template-columns:1fr;grid-template-rows:45vh 1fr}
+    .name{font-size:30px}
+    .content{font-size:18px}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;">
+      <h1>🧩 Mindset Check — Section Pager</h1>
+      <div class="pager">
+        <button id="prevChar" class="btn">⟵ Prev Character</button>
+        <button id="prev" class="btn">← Prev</button>
+        <div id="pos" class="ghost"></div>
+        <button id="next" class="btn">Next →</button>
+        <button id="nextChar" class="btn">Next Character ⟶</button>
+      </div>
+    </div>
+    <div class="ghost">Use ←/→ for sections • Shift+←/→ for characters • Click the image to advance.</div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="stage">
+    <div class="imgbox"><img id="hero" alt="Character image"></div>
+    <div class="panel">
+      <h2 id="name" class="name"></h2>
+      <div id="subtitle" class="subtitle"></div>
+      <div class="section-title" id="sectionTitle"></div>
+      <div id="content" class="content"></div>
+      <div id="distWrap" class="pills"></div>
+      <div class="footer">
+        <div class="dots">
+          <span class="dot" id="dot0"></span>
+          <span class="dot" id="dot1"></span>
+          <span class="dot" id="dot2"></span>
+          <span class="dot" id="dot3"></span>
+        </div>
+        <div id="progress" class="progress"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+const PROFILES = [{"name": "Shortcut Sam", "emoji": "🚀", "subtitle": "Rushing recovery", "imgUrl": "images/shortcut-sam.png", "illusion": "“Why drag this out? If I just work harder, I should be better by next week. Other people might need all those steps, but I’m different. I’ve already lost so much time — I need to catch up fast.”", "distortions": ["Magical thinking", "All‑or‑nothing thinking", "Unrealistic expectations"], "reality": "Recovery is a learning process in the brain and body. Neuroplastic changes, habit rewiring, and cue exposure happen with repetition over time — not by force or speed. Skipping stages creates fragile gains and sets up a crash when stress hits.", "insight": "Trade speed for consistency. Design tiny daily reps (sleep routine, check‑ins, coping skill practice, movement). Use a weekly plan with one change per domain (body, emotions, relationships, purpose). Celebrate boring wins — they are the ones that stick.", "prompts": ["Where has ‘fast’ backfired for you before?", "If you slowed down by 10%, which skill would become more reliable?", "Name one 5‑minute practice you can repeat daily for 30 days."]}, {"name": "Detox Debbie", "emoji": "💊", "subtitle": "Detox = cure", "imgUrl": "images/detox-debbie.png", "illusion": "“I did the hard part in detox. I sweated it out — I’m clean. Why do I need all this other stuff?”", "distortions": ["Minimization", "False equivalence", "Short‑term focus"], "reality": "Detox treats acute withdrawal; it doesn’t address triggers, stress responses, grief/loss, or the skills needed to stay well. Without a plan, post‑acute symptoms and old cues pull people back toward use.", "insight": "See detox as the reset button, not the finish line. Build a 90‑day aftercare plan: (1) people to call, (2) places to avoid/approach, (3) skills to practice daily, (4) supports to attend. Put appointments on the calendar before cravings show up.", "prompts": ["What did detox not teach you that you still need?", "List three supports you’ll use in the next 90 days.", "What’s one trigger you’ll plan for this week?"]}, {"name": "High-Functioning Hank", "emoji": "🏋️", "subtitle": "Denial via performance", "imgUrl": "images/high-functioning-hank.png", "illusion": "“I’ve still got my job, my place, my workouts. I’m not like those ‘real addicts.’ I’m in control.”", "distortions": ["Downward comparison", "Selective attention", "Denial through performance"], "reality": "Good performance in one area can hide harm in another. ‘Functioning’ can mean coping by overworking or overcontrolling. Problems grow quietly until they spill over into health, relationships, or legal trouble.", "insight": "Track objective costs for 2 weeks (sleep, mood, conflict, cravings, missed commitments). Share the data with a trusted person. Strength looks like honest inventory, not perfect optics.", "prompts": ["Where has success made it harder to admit struggle?", "What early warning signs do you tend to dismiss?", "Who can you show your 2‑week data to?"]}, {"name": "Justifying Jenna", "emoji": "🎭", "subtitle": "Excuses over honesty", "imgUrl": "images/justifying-jenna.png", "illusion": "“It wasn’t that bad — I only used on weekends. I had a reason every time. If you lived my life, you’d get it.”", "distortions": ["Rationalization", "Externalization", "Special pleading"], "reality": "Reasons can be real — but they don’t change results. Defending behavior blocks relief and keeps the pattern alive. Ownership opens options; defensiveness keeps you stuck.", "insight": "Use a 60‑second accountability script: (1) what happened, (2) what it cost, (3) what I choose next. Pair it with values: ‘If I value X, then my next step is Y.’", "prompts": ["What’s an excuse that sounded good then but fell apart later?", "Try the 60‑second script on a recent event.", "Which value will guide your next choice?"]}, {"name": "Minimizing Mike", "emoji": "🕶️", "subtitle": "‘It’s not that bad’", "imgUrl": "images/minimizing-mike.png", "illusion": "“Sure, I used, but not every day. I didn’t get arrested. Other people had it worse.”", "distortions": ["Minimization", "Normalization", "Downward comparison"], "reality": "Small costs add up: sleep debt, anxiety, broken trust, missed chances. Discounting ‘minor’ harms delays repair and lets the pattern deepen.", "insight": "Run a 4‑domain check weekly: Health • Relationships • Work/Legal • Self‑respect. Put one observable fact in each box. If it matters to you, it matters — regardless of anyone else’s bottom.", "prompts": ["Where do you hear yourself say ‘it’s not that bad’?", "Name one ‘small’ cost that grew over time.", "What truth would a weekly check‑in keep on your radar?"]}, {"name": "Drama Dana", "emoji": "🌀", "subtitle": "Chaos chaser", "imgUrl": "images/drama-dana.png", "illusion": "“Calm is boring. I need action or I feel empty.”", "distortions": ["Emotional reasoning", "Novelty seeking", "Sensory under‑stimulation"], "reality": "Chaos spikes adrenaline and dopamine but drains resilience. Calm can feel unfamiliar at first — that discomfort is a sign your nervous system is resetting, not that life is meaningless.", "insight": "Create ‘healthy novelty’ (new route, class, hobby, connection) and dose daily regulation (2–5 min breath, cold water, grounding, movement). Train your baseline so calm feels safe.", "prompts": ["When did calm feel uncomfortable — and why?", "List two healthy novelty ideas for this week.", "What 5‑minute regulation practice can you pair with a daily cue?"]}, {"name": "Invincible Ivan", "emoji": "👑", "subtitle": "Overconfidence", "imgUrl": "images/invincible-ivan.png", "illusion": "“Relapse won’t happen to me. I’m stronger than other people here. I can stop anytime. Others need to worry about triggers — I don’t.”", "distortions": ["Optimism bias", "Illusion of control", "Overconfidence"], "reality": "Overconfidence blocks planning. Many relapses happen because people underestimate triggers and overestimate control, not because they ‘don’t want it enough.’", "insight": "Strength = preparation. Use a pilot mindset: if it can happen to anyone, be ready. Build a toolkit (daily coping, support calls, and rehearsed exit plans for risky situations).", "prompts": ["Where did ‘that can’t happen to me’ end up happening?", "One situation where confidence cost you?", "Your three items on a ‘pilot checklist’?", "Who is your co‑pilot for sanity checks?"]}, {"name": "Silent Steve", "emoji": "🤐", "subtitle": "Secrets & shame", "imgUrl": "images/silent-steve.png", "illusion": "“If I keep it to myself, it will go away. No one needs to know.”", "distortions": ["Avoidance", "Thought suppression", "Shame spiral"], "reality": "Silence magnifies burden and increases relapse risk. Connection predicts recovery — not because people fix you, but because secrets lose power when spoken safely.", "insight": "Name — Aim — Share: name the feeling, aim at the unmet need, share one specific truth with a safe person. Script your opener to lower anxiety.", "prompts": ["What got heavier when you kept it secret?", "Who is safe to tell one honest thing this week?", "Draft your 2‑sentence opener now."]}, {"name": "Relapse Ryan", "emoji": "🔄", "subtitle": "‘Tomorrow’ loop", "imgUrl": "images/relapse-ryan.png", "illusion": "“I’ll stop after this one last time. I’ll quit tomorrow. I’ll start when I’m ready.”", "distortions": ["Procrastination", "Present bias", "Future discounting"], "reality": "The brain overestimates future willpower and underestimates today’s harm. ‘Later’ becomes ‘never’ unless you shrink the start and move now.", "insight": "Use a 2‑minute rule: take one action immediately (text support, dispose of the supply, schedule a group, block a number). Momentum beats motivation.", "prompts": ["What have you promised ‘tomorrow’ more than once?", "Name a 2‑minute action you can take today.", "Who will you report it to for accountability?"]}, {"name": "Crisis Chris", "emoji": "🧯", "subtitle": "Only acts at disaster", "imgUrl": "images/crisis-chris.png", "illusion": "“I don’t need recovery unless things get really bad. I can handle small slips.”", "distortions": ["Catastrophic threshold thinking", "Minimization", "Short‑termism"], "reality": "Waiting for catastrophe multiplies damage. Small drifts become big detours without maintenance. Early action is easier than late rescue.", "insight": "Build a simple routine: bedtime/wake window, 10–20 min movement, daily coping practice, one connection, gratitude note. Write a ‘yellow flag’ list and act at yellow, not red.", "prompts": ["What are your first yellow flags?", "What does ‘maintenance’ look like on an average Tuesday?", "One habit you’ll protect even on bad days?"]}, {"name": "Numbing Nina", "emoji": "🧛", "subtitle": "Feels = threat", "imgUrl": "images/numbing-nina.png", "illusion": "“If I don’t feel it, it can’t hurt me. Better to stay numb than overwhelmed.”", "distortions": ["Experiential avoidance", "Catastrophizing about emotions", "All‑or‑nothing thinking"], "reality": "Avoided feelings leak out as anxiety, irritability, and craving. Emotions are data, not danger. Tolerating waves restores choice.", "insight": "Ride the 90‑second wave: (1) name the feeling, (2) breathe 4‑6 cadence, (3) 5‑senses grounding, (4) one value‑based action. Use a distress‑tolerance kit (ice water, paced breathing, walk, opposite action).", "prompts": ["Which emotion do you numb most, and what is it trying to signal?", "Which grounding tool works fastest for you?", "Who helps you feel without fixing you?"]}, {"name": "Perfectionist Pete", "emoji": "🎯", "subtitle": "All‑or‑nothing", "imgUrl": "images/perfectionist-pete.png", "illusion": "“If I can’t do recovery perfectly, it’s not worth it. A slip means I’m a failure.”", "distortions": ["Black‑and‑white thinking", "Overgeneralization", "Labeling"], "reality": "Recovery is iterative. A slip is information, not identity. Perfectionism breeds shame, which fuels avoidance and more slips.", "insight": "Aim for ‘consistent good enough.’ After a slip, use ABC (Antecedent‑Behavior‑Consequence) to learn, then choose one specific adjustment. Practice self‑compassion to keep going.", "prompts": ["Where has perfectionism stalled you?", "How would you debrief a slip without shame?", "Describe your ‘B+ day’ in recovery."]}, {"name": "Tomorrow Tina", "emoji": "🕰️", "subtitle": "Waiting for perfect timing", "imgUrl": "images/tomorrow-tina.png", "illusion": "“I’ll start when I feel ready — stronger, calmer, or less stressed.”", "distortions": ["Emotional reasoning", "Temporal distortion", "Present bias"], "reality": "Readiness often follows action. Waiting for the perfect moment increases fear and avoidance.", "insight": "Use the 3‑minute rule: start for 3 minutes, then reassess. Pair with a cue (after coffee → short walk; after lunch → text support). Track streaks to build self‑efficacy.", "prompts": ["What have you delayed while waiting to ‘feel ready’?", "What is your 3‑minute starter today?", "Which cue will you pair it with so you don’t forget?"]}, {"name": "Nostalgic Nick", "emoji": "🧟", "subtitle": "Selective memory", "imgUrl": "images/nostalgic-nick.png", "illusion": "“The good times were worth it. I miss that feeling.”", "distortions": ["Rosy retrospection", "Selective memory", "Confirmation bias"], "reality": "Addiction edits the highlight reel and hides the ending. Honest memory plays the whole tape — from the high through the aftermath and impact.", "insight": "Make a two‑column memory: ‘The High’ vs ‘The Aftermath.’ Add texts, photos, receipts, or journal lines that show the real ending. Prepare a grounding phrase for nostalgia spikes.", "prompts": ["Which ‘good memory’ changes when you play the full tape?", "What evidence helps you remember the cost?", "What phrase will you use when nostalgia knocks?"]}, {"name": "Comparison Carrie", "emoji": "🪞", "subtitle": "Comparing down", "imgUrl": "images/comparison-carrie.png", "illusion": "“Others are worse than me — I’m fine. Why change?”", "distortions": ["Downward comparison", "Whataboutism", "Minimization"], "reality": "Comparing down lowers urgency but not risk. Your life is measured by your values, not someone else’s bottom.", "insight": "Switch to inspiration comparisons: who models the life you want? Set three value‑aligned goals and track your own metrics weekly.", "prompts": ["Who do you compare to that keeps you stuck?", "Who inspires you forward, and why?", "List your top three value‑based goals for the next 30 days."]}];
+
+const SECTIONS = ["illusion","reality","insight","prompts"];
+let ci=0, si=0;
+const $=s=>document.querySelector(s);
+const hero=$('#hero'),nameEl=$('#name'),sub=$('#subtitle'),sectionTitle=$('#sectionTitle'),
+      content=$('#content'),distWrap=$('#distWrap'),pos=$('#pos'),
+      prev=$('#prev'),next=$('#next'),prevChar=$('#prevChar'),nextChar=$('#nextChar');
+const dots=[$('#dot0'),$('#dot1'),$('#dot2'),$('#dot3')],progress=$('#progress');
+
+function titleFor(section){return section==="illusion"?"Illusion":section==="reality"?"Reality Check":section==="insight"?"Insight":"Discussion Prompts";}
+
+function render(){
+  const p=PROFILES[ci];const section=SECTIONS[si];
+  nameEl.textContent=`${p.emoji} ${p.name}`;sub.textContent=p.subtitle;sectionTitle.textContent=titleFor(section);
+  distWrap.innerHTML="";
+  hero.src=p.imgUrl||"";hero.alt=p.name;
+  hero.onerror=()=>{hero.src='data:image/svg+xml;utf8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><rect width="100%" height="100%" fill="#0c1530"/><text x="50%" y="50%" fill="#9fb8ff" font-size="30" font-family="Arial" text-anchor="middle">No image found: ${p.name}</text></svg>`)};
+  if(section==="illusion"){content.innerHTML=p.illusion;}
+  else if(section==="reality"){content.innerHTML=p.reality;distWrap.innerHTML=(p.distortions||[]).map(d=>`<span class="pill">${d}</span>`).join("");}
+  else if(section==="insight"){content.innerHTML=p.insight;}
+  else{content.innerHTML=`<ul>${(p.prompts||[]).map(q=>`<li>${q}</li>`).join("")}</ul>`;}
+  dots.forEach((d,idx)=>d.classList.toggle("on",idx===si));
+  pos.textContent=`Character ${ci+1} of ${PROFILES.length}`;
+  progress.textContent=`${titleFor(section)} — ${si+1}/4`;
+  prev.disabled=(si===0&&ci===0);next.disabled=(si===SECTIONS.length-1&&ci===PROFILES.length-1);
+  prevChar.disabled=(ci===0);nextChar.disabled=(ci===PROFILES.length-1);
+  window.scrollTo({top:0,behavior:'instant'});
+}
+function moveSection(dx){const newSi=si+dx;if(newSi<0){if(ci>0){ci--;si=SECTIONS.length-1;}}else if(newSi>=SECTIONS.length){if(ci<PROFILES.length-1){ci++;si=0;}}else{si=newSi;}render();}
+function moveChar(dx){ci=Math.max(0,Math.min(PROFILES.length-1,ci+dx));si=0;render();}
+prev.addEventListener('click',()=>moveSection(-1));next.addEventListener('click',()=>moveSection(1));
+prevChar.addEventListener('click',()=>moveChar(-1));nextChar.addEventListener('click',()=>moveChar(1));
+document.addEventListener('keydown',e=>{if(e.shiftKey&&e.key==='ArrowRight')moveChar(1);else if(e.shiftKey&&e.key==='ArrowLeft')moveChar(-1);else if(e.key==='ArrowRight')moveSection(1);else if(e.key==='ArrowLeft')moveSection(-1);});
+hero.addEventListener('click',()=>moveSection(1));
+render();
+</script>
+</body>
+</html>
