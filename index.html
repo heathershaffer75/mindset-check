@@ -1,0 +1,674 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🧩 Mindset Check: Recovery Edition — Profiles (Set 1)</title>
+  <meta name="description" content="Interactive profile cards for teaching recovery mindsets with humor and clinical depth." />
+  <style>
+    :root{
+      --bg:#0b1020;
+      --ink:#e8edf7;
+      --muted:#a7b3d1;
+      --panel:#0f162b;
+      --chip:#172447;
+      --accent:#7c5cff;
+      --accent-2:#19c6ff;
+      --accent-3:#ff5cf0;
+      --good:#10b981;
+      --warn:#f59e0b;
+      --bad:#ef4444;
+      --shadow:0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.04);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial;
+      background:
+        radial-gradient(1200px 700px at 10% -20%, rgba(124,92,255,.22), transparent 60%),
+        radial-gradient(1000px 600px at 110% 10%, rgba(25,198,255,.18), transparent 60%),
+        linear-gradient(180deg, #0b1020, #0a0e1a 60%);
+      color:var(--ink); letter-spacing:.2px;
+    }
+    header{position:sticky; top:0; z-index:50; backdrop-filter: blur(10px); background: linear-gradient(180deg, rgba(11,16,32,.75), rgba(11,16,32,.35)); border-bottom:1px solid rgba(255,255,255,.06)}
+    .wrap{max-width:1100px; margin:0 auto; padding:18px 20px}
+    h1{margin:0; font-size:clamp(20px, 2.5vw, 40px); font-weight:900; display:flex; align-items:center; gap:12px; font-family:'Trebuchet MS','Lucida Sans Unicode','Lucida Grande','Lucida Sans',Arial,sans-serif; letter-spacing:1px; text-transform:uppercase; background:linear-gradient(90deg,var(--accent-3),var(--accent-2),var(--accent)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-shadow:0 0 12px rgba(124,92,255,.6),0 0 20px rgba(25,198,255,.5)}
+    h1 .tag{font-size:.75em; font-weight:700; padding:5px 10px; border-radius:999px; background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:#081226}
+    .toolbar{display:flex; flex-wrap:wrap; gap:10px; margin-top:12px}
+    .toolbar > *{background:var(--panel); border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:10px 12px; color:var(--ink); box-shadow:var(--shadow)}
+    input[type="search"], select{outline:none}
+    button{cursor:pointer; transition:.2s transform ease, .2s opacity ease}
+    button:hover{transform:translateY(-1px)}
+    .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:18px; padding:22px 20px}
+
+    .card{position:relative; border-radius:var(--radius); background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.08); box-shadow:var(--shadow); overflow:hidden}
+    .card .banner{height:140px; background:linear-gradient(90deg, #101a3b, #0f162b); display:flex; align-items:center; justify-content:center; overflow:hidden}
+    .card .banner img{max-height:140px; width:auto; object-fit:contain}
+    .content{padding:16px 16px 18px}
+    .title{display:flex; align-items:flex-start; gap:10px; margin-top:10px}
+    .avatar{flex:0 0 72px; height:72px; border-radius:20px; background:linear-gradient(180deg, #131d3c, #0f162b); border:1px solid rgba(255,255,255,.1); display:grid; place-items:center; font-size:38px; box-shadow:var(--shadow)}
+    .title h2{margin:0; font-size:20px}
+    .subtitle{margin:6px 0 0; color:var(--muted); font-size:13px}
+
+    .chips{display:flex; flex-wrap:wrap; gap:6px; margin:10px 0}
+    .chip{font-size:12px; padding:6px 8px; border-radius:999px; background:var(--chip); color:#cfe0ff; border:1px solid rgba(255,255,255,.06)}
+
+    details{background:rgba(255,255,255,.02); border:1px solid rgba(255,255,255,.06); padding:12px; border-radius:12px; margin:10px 0}
+    summary{cursor:pointer; font-weight:700}
+    .label{font-weight:700; font-size:12px; letter-spacing:.5px; text-transform:uppercase; color:#bcd1ff; margin:10px 0 6px}
+    .box{background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.06); border-radius:12px; padding:12px}
+
+    .footer{display:flex; gap:8px; margin-top:12px}
+    .btn{flex:1; padding:10px 12px; border-radius:12px; border:1px solid rgba(255,255,255,.08); background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); color:var(--ink)}
+    .btn.primary{background:linear-gradient(90deg,var(--accent-3),var(--accent-2)); color:#061026; font-weight:800}
+
+    .kickers{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
+    .kickers .k{font-size:11px; padding:5px 8px; border-radius:8px; border:1px dashed rgba(255,255,255,.16); color:#d9e6ff}
+
+    .empty{opacity:.7; text-align:center; padding:40px}
+
+    /* TV / Presentation mode (big, legible) */
+    body.present .wrap{max-width:1400px}
+    body.present h1{font-size:clamp(28px,3vw,56px)}
+    body.present .grid{grid-template-columns:repeat(auto-fill,minmax(380px,1fr)); gap:24px}
+    body.present .card .banner{height:200px}
+    body.present .card .banner img{max-height:200px}
+    body.present .title h2{font-size:26px}
+    body.present .subtitle{font-size:15px}
+    body.present .box{font-size:18px; line-height:1.6}
+
+    /* Lightweight neon accents (CSS-only glow) */
+    body.neon{background:
+        radial-gradient(1200px 700px at 10% -20%, rgba(124,92,255,.32), transparent 60%),
+        radial-gradient(1000px 600px at 110% 10%, rgba(25,198,255,.28), transparent 60%),
+        linear-gradient(180deg, #080b18, #060812 60%)}
+    body.neon h1{ text-shadow: 0 0 10px rgba(124,92,255,.7), 0 0 18px rgba(25,198,255,.5) }
+    body.neon .card{ box-shadow: 0 20px 50px rgba(0,0,0,.55), 0 0 0 2px rgba(124,92,255,.25) inset, 0 0 28px rgba(124,92,255,.22), 0 0 40px rgba(25,198,255,.18) }
+    body.neon .card .banner{ background: radial-gradient(600px 160px at 30% 10%, rgba(255,92,240,.28), transparent 60%), radial-gradient(600px 160px at 70% 80%, rgba(25,198,255,.30), transparent 60%), linear-gradient(90deg, #121b3d, #10162d) }
+    body.neon .charimg{ filter: drop-shadow(0 0 16px rgba(25,198,255,.45)) drop-shadow(0 0 22px rgba(255,92,240,.3)) }
+    body.neon .chip{ box-shadow: 0 0 0 2px rgba(124,92,255,.28) inset, 0 0 14px rgba(25,198,255,.2) }
+    body.neon .label{ color:#d6e8ff; text-shadow:0 0 6px rgba(124,92,255,.32) }
+    body.neon .box{ border-color: rgba(255,255,255,.16); box-shadow: inset 0 0 18px rgba(124,92,255,.08), 0 0 18px rgba(25,198,255,.1) }
+
+    /* Logo banner styles */
+    .brand{display:flex; align-items:center; gap:14px; margin-bottom:10px}
+    .brand img{height:64px; width:auto; object-fit:contain; filter: drop-shadow(0 4px 16px rgba(124,92,255,.35));}
+    body.present .brand img{height:96px}
+    body.neon .brand img{filter: drop-shadow(0 0 18px rgba(25,198,255,.5)) drop-shadow(0 0 26px rgba(255,92,240,.35))}
+
+    @media print{
+      header, .toolbar{display:none}
+      body{background:#fff; color:#000}
+      .grid{grid-template-columns:repeat(2, 1fr)}
+      .card{break-inside:avoid; background:#fff; border:1px solid #ddd; box-shadow:none}
+      .banner img{max-height:100px}
+      .avatar{border:1px solid #ddd}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="brand" aria-label="Mindset Check Logo Area">
+        <img id="brandLogo" alt="Mindset Check logo" />
+      </div>
+      <h1>🧩 Mindset Check: Recovery Edition <span class="tag">Profiles — Set 1</span></h1>
+      <div class="toolbar" role="group" aria-label="Controls">
+        <input id="q" type="search" placeholder="Search name, illusion, distortion, prompt…" aria-label="Search" />
+        <select id="filter" aria-label="Filter by theme">
+          <option value="">All themes</option>
+        </select>
+        <button class="shuffle" id="shuffle">Shuffle</button>
+        <button class="shuffle" id="revealAll">Toggle: Expand All</button>
+        <button class="shuffle" id="copyAll">Copy Visible Cards</button>
+        <button class="shuffle" id="tvMode">TV Mode</button>
+        <button class="shuffle" id="neonMode">Neon Mode</button>
+        <button class="shuffle" id="exportJson">Export JSON</button>
+        <label class="shuffle" for="importJson" style="display:inline-block;cursor:pointer">Import JSON<input id="importJson" type="file" accept="application/json" style="display:none"/></label>
+        <select class="shuffle" id="logoSelect" aria-label="Choose built-in logo">
+          <option value="">Logo: Choose motif</option>
+          <option value="puzzle">🧩 Puzzle</option>
+          <option value="brain">🧠 Brainwave</option>
+          <option value="compass">🧭 Compass</option>
+          <option value="phoenix">🔥 Phoenix</option>
+          <option value="none">No logo</option>
+        </select>
+        <label class="shuffle" for="logoUpload" style="display:inline-block;cursor:pointer">Upload Logo<input id="logoUpload" type="file" accept="image/*" style="display:none"/></label>
+        <button class="shuffle" id="clearLogo">Clear Logo</button>
+        <button class="shuffle" id="downloadHtml">Download HTML</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div id="grid" class="grid" aria-live="polite"></div>
+    <div id="empty" class="empty" hidden>😅 No matches. Try clearing search or filters.</div>
+  </main>
+
+  <template id="card-tpl">
+    <article class="card" data-name="" data-themes="">
+      <div class="banner"><img class="charimg" alt="Character image" /></div>
+      <div class="content">
+        <div class="title">
+          <div class="avatar" aria-hidden="true"></div>
+          <div>
+            <h2 class="name"></h2>
+            <div class="subtitle"></div>
+            <div class="chips"></div>
+          </div>
+        </div>
+
+        <div class="label">Illusion (typical sayings)</div>
+        <div class="box illusion"></div>
+
+        <details>
+          <summary>Reality Check (cognitive distortions)</summary>
+          <div class="label" style="margin-top:10px">Distortions</div>
+          <div class="kickers distortions"></div>
+          <div class="label">What’s actually true</div>
+          <div class="box reality"></div>
+        </details>
+
+        <details>
+          <summary>Insight (how to work with it)</summary>
+          <div class="box insight"></div>
+        </details>
+
+        <details>
+          <summary>Discussion Prompts</summary>
+          <ul class="box prompts" style="margin:0; padding-left:18px"></ul>
+        </details>
+
+        <div class="footer">
+          <button class="btn" data-action="copy">Copy Card</button>
+          <button class="btn primary" data-action="reveal">Reveal All Sections</button>
+        </div>
+
+        <div class="label">Image Prompt (for your generator)</div>
+        <div class="box imgprompt"></div>
+      </div>
+    </article>
+  </template>
+
+  <script>
+    let PROFILES = [
+      {
+        name: 'Shortcut Sam', emoji: '🚀', subtitle: 'Rushing recovery',
+        themes: ['impatience','process','habits'],
+        chips: ['Pace yourself','Neuroplasticity','Consistency'],
+        illusion: '“Why drag this out? If I just work harder, I should be better by next week. Other people might need all those steps, but I’m different. I’ve already lost so much time — I need to catch up fast.”',
+        distortions: ['Magical thinking','All-or-nothing thinking','Unrealistic expectations'],
+        reality: 'Recovery isn’t a sprint; it is a gradual rewiring. Skipping stages sets up disappointment and relapse when reality cannot match accelerated expectations.',
+        insight: 'Think strength training for your brain: small, consistent reps build lasting change. Habit formation and neuroplasticity need time, structure, and repetition. Use micro-goals, daily routines, and celebrate consistency over intensity.',
+        prompts: [
+          'Where in your recovery do you feel most impatient? What cost has rushing had in the past?',
+          'If you slowed down 10%, what skill would you actually gain this month?',
+          'What is a tiny daily action you can repeat for 30 days?'
+        ],
+        img: 'Cartoon-style Shortcut Sam with a giant remote control fast-forwarding his own life, skipping steps on a staircase. Neon palette, bold outlines, playful humor. Subtle recovery symbols like broken chains in the background.',
+        imgUrl: 'images/shortcut-sam.png'
+      },
+      {
+        name: 'Detox Debbie', emoji: '💊', subtitle: 'Detox = cure',
+        themes: ['detox','education','skills'], chips: ['Beyond detox','Coping skills','Aftercare'],
+        illusion: '“I already did the hard part in detox. I sweated, puked, and suffered through the worst. Now I’m clean — I don’t see why I need all this other stuff.”',
+        distortions: ['Minimization','False equivalence','Short-term focus'],
+        reality: 'Detox clears the body, not the triggers or learning. Without new coping, old stressors will pull you back. Aftercare and skills training reduce relapse risk.',
+        insight: 'Treat detox as the reset button, not the finish line. Build a relapse-prevention plan: triggers, HALT checks, 3 daily coping skills, and a support contact tree. Pair psychoeducation with practice reps.',
+        prompts: [
+          'What tool have you learned after detox that detox alone could never teach?',
+          'If you left today with only three skills, which ones would protect you most?',
+          'What would “aftercare” look like for the next 30–90 days?'
+        ],
+        img: 'Detox Debbie on a hospital bed holding a gold trophy labeled “Cured,” IV still in. Bright satirical colors, caution triangles, half-built bridge behind her.',
+        imgUrl: 'images/detox-debbie.png'
+      },
+      {
+        name: 'High-Functioning Hank', emoji: '🏋️', subtitle: 'Denial via performance',
+        themes: ['denial','comparison','mask'], chips: ['Looks fine ≠ is fine','Honesty','Early intervention'],
+        illusion: '“I’ve still got my job, my house, my workouts. People worse off than me are the real addicts. I’m in control.”',
+        distortions: ['Downward comparison','Denial through performance','Selective attention'],
+        reality: 'Success in one lane does not cancel harm in another. Addiction can hide under a “functioning” mask until cracks appear; delay increases cost.',
+        insight: 'Functioning ≠ freedom. Track objective costs (sleep, mood, conflicts, cravings). Share with a peer/sponsor weekly. Early honesty prevents a harder crash later.',
+        prompts: [
+          'How has success in one area made it harder to admit struggle in another?',
+          'What early warning signs do you tend to ignore because you “look fine”?',
+          'Whom could you tell the unfiltered truth to this week?'
+        ],
+        img: 'High-Functioning Hank juggling dumbbells, laptop, money while hiding bottles. Masks/facades floating. Punchy bold colors.',
+        imgUrl: 'images/high-functioning-hank.png'
+      },
+      {
+        name: 'Justifying Jenna', emoji: '🎭', subtitle: 'Excuses over honesty',
+        themes: ['rationalization','accountability'], chips: ['Own it','Consequences','Values'],
+        illusion: '“It wasn’t that bad — I only drank on weekends. I had a reason every time I used. If you lived my life, you’d understand.”',
+        distortions: ['Rationalization','Externalization','Special pleading'],
+        reality: 'Excuses reduce guilt but do not change outcomes. Defending behavior delays relief; responsibility opens options.',
+        insight: 'Swap defense for description: “What happened, what it cost, what I choose next.” Use MI: align actions with chosen values. Practice a 60-second accountability script.',
+        prompts: [
+          'What’s an excuse that sounded good then but collapsed later?',
+          'How can you describe the behavior without defending it?',
+          'Which value do you want your next choice to honor?'
+        ],
+        img: 'Justifying Jenna in a lawyer suit, waving a giant excuse scroll. Tilted scales weighed down by bottles. Bright playful palette.',
+        imgUrl: 'images/justifying-jenna.png'
+      },
+      {
+        name: 'Minimizing Mike', emoji: '🕶️', subtitle: '“It’s not that bad”',
+        themes: ['minimization','harm','awareness'], chips: ['Name the cost','Honest inventory'],
+        illusion: '“Sure, I used, but it wasn’t every day. I never got arrested like some people. At least I didn’t lose my family.”',
+        distortions: ['Minimization','Comparison thinking','Normalization'],
+        reality: 'Comparing down shrinks urgency but not harm. Small, repeated costs accumulate into big losses.',
+        insight: 'Run a 4-quadrant reality check: health, relationships, work/legal, self-respect. List micro-costs. If it matters to you, it matters.',
+        prompts: [
+          'Where do you hear yourself saying “it’s not that bad”?',
+          'Which “small” cost grew bigger over time?',
+          'What would an honest weekly check-in include?'
+        ],
+        img: 'Minimizing Mike using a tiny measuring tape on a giant overflowing bottle. Smug expression, bright contrast colors.',
+        imgUrl: 'images/minimizing-mike.png'
+      },
+      {
+        name: 'Drama Dana', emoji: '🌀', subtitle: 'Chaos chaser',
+        themes: ['chaos','boredom','nervous system'], chips: ['Regulate','Find calm','Sustainable'],
+        illusion: '“Life is boring when it’s calm. I’d rather have chaos than sit with silence. Drama keeps me alive.”',
+        distortions: ['Emotional reasoning','Novelty seeking','Sensory under-stimulation'],
+        reality: 'Chaos spikes adrenaline/dopamine but drains resilience and distracts from healing. Calm initially feels unfamiliar, not empty.',
+        insight: 'Retrain your baseline: short doses of calm (2–5 min breath work, sensory grounding, values-based activity). Schedule “healthy novelty” (new route, hobby, connection).',
+        prompts: [
+          'When has calm felt uncomfortable? Why?',
+          'What is a healthy way to get novelty this week?',
+          'What 5-minute regulation practice could you stack onto an existing habit?'
+        ],
+        img: 'Drama Dana dancing in a tornado of phones, bills, bottles. Neon storm palette, stop signs spinning.',
+        imgUrl: 'images/drama-dana.png'
+      },
+      {
+        name: 'Invincible Ivan', emoji: '👑', subtitle: 'Overconfidence',
+        themes: ['relapse risk','humility'], chips: ['Humility = armor','Plan ahead'],
+        illusion: '“Relapse? Not me. I’m too strong for that. Other people fall off, but I’m solid.”',
+        distortions: ['Optimism bias','Overconfidence','Illusion of control'],
+        reality: 'Believing you are immune blinds you to risk. Everyone has triggers; humility keeps you scanning and prepared.',
+        insight: 'Adopt a “pilot’s checklist”: triggers, coping, supports, exit plans. Rehearse 3 high-risk scenarios. Strength = preparation, not bravado.',
+        prompts: [
+          'Where does overconfidence sneak in for you?',
+          'Which trigger deserves a written exit plan?',
+          'Who can sanity-check your plan this week?'
+        ],
+        img: 'Invincible Ivan in a superhero cape, chest out, oblivious to a banana peel and bottle. Comic-book colors.',
+        imgUrl: 'images/invincible-ivan.png'
+      },
+      {
+        name: 'Silent Steve', emoji: '🤐', subtitle: 'Secrets & shame',
+        themes: ['avoidance','connection'], chips: ['Say it to heal it','Support matters'],
+        illusion: '“If I keep my struggles to myself, they’ll go away. No one needs to know what I’m dealing with.”',
+        distortions: ['Avoidance','Thought suppression','Shame spiral'],
+        reality: 'Silence magnifies burden and feeds shame. Isolation is a risk factor for relapse; connection predicts recovery.',
+        insight: 'Use “name—aim—share”: name the feeling, aim at the need, share with one safe person. Practice scripted shares to lower anxiety.',
+        prompts: [
+          'What’s something that got heavier when you kept it secret?',
+          'Who is safe to tell one honest thing to this week?',
+          'What 2-sentence script could you use to start that convo?'
+        ],
+        img: 'Silent Steve zipped inside a giant padlock, clutching balloons about to pop. Punchy red/blue scheme.',
+        imgUrl: 'images/silent-steve.png'
+      },
+      {
+        name: 'Relapse Ryan', emoji: '🔄', subtitle: '“Tomorrow” loop',
+        themes: ['procrastination','readiness'], chips: ['Tiny start today','Momentum'],
+        illusion: '“I’ll stop after this one last time. I’ll quit tomorrow. I’ll start for real when I’m ready.”',
+        distortions: ['Procrastination','Future discounting','Present bias'],
+        reality: '“Later” often becomes “never.” The brain overestimates future willpower and underestimates today’s harm.',
+        insight: 'Shrink the start: commit to a 2-minute action now (text support, pour out supply, schedule group). Momentum beats motivation.',
+        prompts: [
+          'What have you promised “tomorrow” more than once?',
+          'What 2-minute action can you take before bed tonight?',
+          'Who will you report your action to for accountability?'
+        ],
+        img: 'Relapse Ryan on a hamster wheel labeled “Tomorrow,” chasing a dangling bottle. Bold cycle arrows, bright palette.',
+        imgUrl: 'images/relapse-ryan.png'
+      },
+      {
+        name: 'Crisis Chris', emoji: '🧯', subtitle: 'Only acts at disaster',
+        themes: ['maintenance','early signs'], chips: ['Prevent > repair','Daily practice'],
+        illusion: '“I don’t really need recovery unless things get really bad. I can handle the small stuff on my own.”',
+        distortions: ['Catastrophic threshold thinking','Minimization','Short-termism'],
+        reality: 'Waiting for disaster increases damage and effort needed. Small drifts turn into big detours without maintenance.',
+        insight: 'Build a simple daily/weekly routine: sleep, movement, connection, coping practice, gratitude. Spot “yellow flags” and act while they are small.',
+        prompts: [
+          'What are your first yellow flags before a crash?',
+          'What does “maintenance” look like on an average Tuesday?',
+          'Which one habit will you protect even on bad days?'
+        ],
+        img: 'Crisis Chris with a fire extinguisher, ignoring many small fires and aiming at a giant blaze. Neon oranges/pinks.',
+        imgUrl: 'images/crisis-chris.png'
+      },
+      {
+        name: 'Numbing Nina', emoji: '🧛', subtitle: 'Feels = threat',
+        themes: ['emotion','regulation'], chips: ['Feel to heal','Grounding','DBT skills'],
+        illusion: '“If I don’t feel it, it can’t hurt me. Better to stay numb than get overwhelmed.”',
+        distortions: ['Emotional avoidance','Catastrophizing about emotions','Experiential avoidance'],
+        reality: 'Pushed-down feelings leak out as anxiety, irritability, or relapse triggers. Emotions are data, not dangers.',
+        insight: 'Use the 90-second wave: name the feeling, breathe (4-6 cadence), ground with 5-senses, then choose a value-based action. Distress tolerance buys time for wise mind.',
+        prompts: [
+          'Which emotion do you numb most? What is it trying to tell you?',
+          'What grounding skill works fastest for you?',
+          'Who helps you feel without fixing you?'
+        ],
+        img: 'Numbing Nina sipping an oversized slushie labeled “Numbness,” lounging on an inner tube while storm clouds gather. Pastel vs stormy palette.',
+        imgUrl: 'images/numbing-nina.png'
+      },
+      {
+        name: 'Perfectionist Pete', emoji: '🎯', subtitle: 'All-or-nothing',
+        themes: ['perfectionism','shame','resilience'], chips: ['Progress > perfection','Self-compassion'],
+        illusion: '“If I can’t do recovery perfectly, it’s not worth doing. One slip means I’m a failure.”',
+        distortions: ['Black-and-white thinking','Overgeneralization','Labeling'],
+        reality: 'Recovery is iterative and messy. A slip is information, not identity. Perfectionism fuels shame and avoidance.',
+        insight: 'Adopt “good enough” targets, debrief slips with curiosity (ABC: antecedent–behavior–consequence), and practice self-compassion phrases to sustain effort.',
+        prompts: [
+          'Where has perfectionism stalled your progress?',
+          'How would you debrief a slip without shame?',
+          'What does a “B+ day” look like in recovery?'
+        ],
+        img: 'Perfectionist Pete straining to hit a tiny bullseye while larger targets surround him. Punchy palette, humorous frustration.',
+        imgUrl: 'images/perfectionist-pete.png'
+      },
+      {
+        name: 'Tomorrow Tina', emoji: '🕰️', subtitle: 'Waiting for perfect timing',
+        themes: ['readiness','activation'], chips: ['Action creates readiness','Start small'],
+        illusion: '“I’ll start when the time is right — when I feel stronger, calmer, or more ready.”',
+        distortions: ['Temporal distortion','Emotional reasoning','Present bias'],
+        reality: 'The perfect time never arrives. Readiness often follows action; small starts reduce anxiety and build self-efficacy.',
+        insight: 'Use a 3-minute rule: start for 3 minutes and reassess. Bundle with a cue (after coffee, take a 5-minute walk; after lunch, text support).',
+        prompts: [
+          'What have you delayed while waiting to “feel ready”?',
+          'What is your 3-minute starter today?',
+          'Which cue can you pair it with so you don’t forget?'
+        ],
+        img: 'Tomorrow Tina lounging in a hammock amid dozens of ticking alarm clocks, bright tropical palette, floating calendar.',
+        imgUrl: 'images/tomorrow-tina.png'
+      },
+      {
+        name: 'Nostalgic Nick', emoji: '🧟', subtitle: 'Selective memory',
+        themes: ['memory','craving','truth'], chips: ['Play the tape','Full story'],
+        illusion: '“Remember the good times? Those nights were wild, fun, and worth it. That’s what I miss.”',
+        distortions: ['Selective memory','Rosy retrospection','Confirmation bias'],
+        reality: 'Addiction edits the highlight reel, hiding the consequences. Honest memory requires playing the whole tape until the real ending.',
+        insight: 'Create a two-column memory: “the high” vs “the aftermath.” Add photos, texts, bills to ground it. Rehearse a grounding phrase when nostalgia hits.',
+        prompts: [
+          'Which “good memory” looks different when you play the full tape?',
+          'What evidence helps you remember the cost?',
+          'What phrase will you use when nostalgia knocks?'
+        ],
+        img: 'Nostalgic Nick with a glowing photo album of fun nights while surroundings are ruined. Warm album vs dark background contrast.',
+        imgUrl: 'images/nostalgic-nick.png'
+      },
+      {
+        name: 'Comparison Carrie', emoji: '🪞', subtitle: 'Comparing down',
+        themes: ['comparison','motivation','values'], chips: ['Inspire up','Own your path'],
+        illusion: '“Other people lost everything. Compared to them, I’m fine. Why should I change if they’re worse?”',
+        distortions: ['Downward comparison','Whataboutism','Minimization'],
+        reality: 'Comparing down lowers urgency but not risk. Your goals are about your values, not someone else’s rock bottom.',
+        insight: 'Switch to upward/inspiration comparisons. Define 3 value-aligned goals and track your own metrics. Recovery is personal, not relative.',
+        prompts: [
+          'Who do you compare to that keeps you stuck?',
+          'Who inspires you forward — and why?',
+          'What are your top 3 value-based goals for the next 30 days?'
+        ],
+        img: 'Comparison Carrie holding a warped funhouse mirror making her look smaller than another shadow figure. Bright distorted reflections.',
+        imgUrl: 'images/comparison-carrie.png'
+      }
+    ];
+
+    const $ = s => document.querySelector(s);
+    const grid = $('#grid');
+    const filter = $('#filter');
+    const search = $('#q');
+
+    function el(tag, opts={}){ const n = document.createElement(tag); Object.assign(n, opts); return n; }
+
+    function render(profiles){
+      grid.innerHTML = '';
+      if(!profiles.length){ $('#empty').hidden = false; return; }
+      $('#empty').hidden = true;
+      const tpl = $('#card-tpl');
+      profiles.forEach(p=>{
+        const frag = tpl.content.cloneNode(true);
+        const card = frag.querySelector('.card');
+        card.dataset.name = p.name.toLowerCase();
+        card.dataset.themes = p.themes.join(',');
+
+        frag.querySelector('.avatar').textContent = p.emoji;
+        frag.querySelector('.name').textContent = `${p.emoji} ${p.name}`;
+        frag.querySelector('.subtitle').textContent = p.subtitle;
+
+        const chips = frag.querySelector('.chips');
+        p.chips.forEach(c=> chips.appendChild(el('span',{className:'chip', textContent:c})));
+
+        frag.querySelector('.illusion').textContent = p.illusion;
+        frag.querySelector('.reality').textContent = p.reality;
+        frag.querySelector('.insight').textContent = p.insight;
+
+        const ds = frag.querySelector('.distortions');
+        p.distortions.forEach(d=> ds.appendChild(el('span',{className:'k', textContent:d})));
+
+        const ul = frag.querySelector('.prompts');
+        p.prompts.forEach(q=> ul.appendChild(el('li',{textContent:q})));
+
+        frag.querySelector('.imgprompt').textContent = p.img;
+        if(p.imgUrl){ frag.querySelector('.charimg').src = p.imgUrl; frag.querySelector('.charimg').alt = p.name; }
+
+        frag.querySelector('[data-action="copy"]').addEventListener('click', ()=> copyCard(p));
+        frag.querySelector('[data-action="reveal"]').addEventListener('click', (e)=>{
+          card.querySelectorAll('details').forEach(d=> d.open = true);
+          e.target.textContent = 'Sections Revealed';
+          e.target.disabled = true;
+        });
+
+        grid.appendChild(frag);
+      });
+    }
+
+    function buildFilterOptions(){
+      const all = new Set(PROFILES.flatMap(p=>p.themes));
+      const current = filter.value;
+      filter.innerHTML = '<option value="">All themes</option>';
+      all.forEach(t=> filter.appendChild(Object.assign(document.createElement('option'),{value:t, textContent:t})));
+      if(current) filter.value = current;
+    }
+
+    function applyFilters(){
+      const term = search.value.trim().toLowerCase();
+      const f = filter.value;
+      const out = PROFILES.filter(p=>{
+        const inText = [p.name, p.subtitle, p.illusion, p.reality, p.insight, p.distortions.join(' '), p.prompts.join(' ')].join(' ').toLowerCase();
+        const matchTerm = !term || inText.includes(term);
+        const matchFilter = !f || p.themes.includes(f);
+        return matchTerm && matchFilter;
+      });
+      render(out);
+      localStorage.setItem('mc_q', search.value);
+      localStorage.setItem('mc_filter', filter.value);
+    }
+
+    function shuffle(){
+      const arr = [...PROFILES];
+      for(let i=arr.length-1;i>0;i--){ const j = Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]]; }
+      render(arr);
+    }
+
+    function copyCard(p){
+      const txt = `# ${p.name}
+
+Illusion: ${p.illusion}
+
+Reality Check (Distortions: ${p.distortions.join(', ')}):
+${p.reality}
+
+Insight:
+${p.insight}
+
+Discussion Prompts:
+- ${p.prompts.join('
+- ')}
+`;
+      navigator.clipboard.writeText(txt).then(()=>{ alert('Card copied to clipboard.'); });
+    }
+
+    // Export / Import JSON (backup safety)
+    const exportBtn = document.getElementById('exportJson');
+    const importInput = document.getElementById('importJson');
+    const downloadBtn = document.getElementById('downloadHtml');
+    exportBtn.addEventListener('click', ()=>{
+      const blob = new Blob([JSON.stringify(PROFILES, null, 2)], {type:'application/json'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = 'mindset-check-profiles.json'; a.click(); URL.revokeObjectURL(url);
+    });
+    importInput.addEventListener('change', (e)=>{
+      const file = e.target.files && e.target.files[0]; if(!file) return;
+      const reader = new FileReader();
+      reader.onload = ()=>{
+        try{
+          const data = JSON.parse(reader.result);
+          if(Array.isArray(data)){
+            PROFILES = data; buildFilterOptions(); applyFilters(); alert('Profiles imported successfully.');
+          } else { alert('Invalid file: expected an array of profiles.'); }
+        }catch(err){ alert('Could not parse JSON.'); }
+      };
+      reader.readAsText(file);
+    });
+
+    // Download full HTML snapshot
+    downloadBtn.addEventListener('click', ()=>{
+      const html = '<!doctype html>\n' + document.documentElement.outerHTML;
+      const blob = new Blob([html], {type:'text/html'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = 'mindset-check-profiles.html'; a.click(); URL.revokeObjectURL(url);
+    });
+
+    // TV + Neon toggles with persistence
+    const tvBtn = document.getElementById('tvMode');
+    const neonBtn = document.getElementById('neonMode');
+    function setTV(on){ document.body.classList.toggle('present', !!on); localStorage.setItem('mc_tv', on ? '1':'0'); }
+    function setNeon(on){ document.body.classList.toggle('neon', !!on); localStorage.setItem('mc_neon', on ? '1':'0'); }
+    tvBtn.addEventListener('click', ()=> setTV(!document.body.classList.contains('present')));
+    neonBtn.addEventListener('click', ()=> setNeon(!document.body.classList.contains('neon')));
+
+    // Controls
+    document.getElementById('shuffle').addEventListener('click', shuffle);
+    document.getElementById('revealAll').addEventListener('click', ()=>{ document.querySelectorAll('details').forEach(d=> d.open = !d.open); });
+    document.getElementById('copyAll').addEventListener('click', ()=>{
+      const term = search.value.trim().toLowerCase();
+      const f = filter.value;
+      const out = PROFILES.filter(p=>{
+        const inText = [p.name, p.subtitle, p.illusion, p.reality, p.insight, p.distortions.join(' '), p.prompts.join(' ')].join(' ').toLowerCase();
+        const matchTerm = !term || inText.includes(term);
+        const matchFilter = !f || p.themes.includes(f);
+        return matchTerm && matchFilter;
+      });
+      const txt = out.map(p=> `# ${p.name}
+Illusion: ${p.illusion}
+Reality Check (Distortions: ${p.distortions.join(', ')}): ${p.reality}
+Insight: ${p.insight}
+Prompts: ${p.prompts.join(' | ')}`).join('
+
+---
+
+');
+      navigator.clipboard.writeText(txt).then(()=> alert('Visible cards copied.'));
+    });
+
+    // Restore UI state
+    (function(){
+      if(localStorage.getItem('mc_tv')==='1') document.body.classList.add('present');
+      if(localStorage.getItem('mc_neon')==='1') document.body.classList.add('neon');
+      const savedQ = localStorage.getItem('mc_q')||''; const savedF = localStorage.getItem('mc_filter')||'';
+      search.value = savedQ; filter.value = savedF;
+    })();
+
+    // Build and render
+    buildFilterOptions();
+    applyFilters();
+
+    // --- Logo helpers ---------------------------------------------------------
+    const logoImg = document.getElementById('brandLogo');
+    const logoSelect = document.getElementById('logoSelect');
+    const logoUpload = document.getElementById('logoUpload');
+    const clearLogoBtn = document.getElementById('clearLogo');
+
+    function svgPuzzle(){
+      const svg = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 64'>
+        <defs><linearGradient id='g' x1='0' x2='1'>
+          <stop offset='0%' stop-color='#ff5cf0'/><stop offset='50%' stop-color='#19c6ff'/><stop offset='100%' stop-color='#7c5cff'/>
+        </linearGradient></defs>
+        <g fill='none' stroke='url(#g)' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'>
+          <path d='M12 42h26c2 0 3-2 3-3v-4c0-5 8-5 8 0v4c0 1 1 3 3 3h26c2 0 3-2 3-3v-5c0-5 8-5 8 0v5c0 1 1 3 3 3h26c2 0 3-2 3-3v-4c0-5 8-5 8 0v4c0 1 1 3 3 3h26'/>
+          <rect x='10' y='12' width='40' height='30' rx='6'/>
+          <rect x='80' y='12' width='40' height='30' rx='6'/>
+          <rect x='150' y='12' width='40' height='30' rx='6'/>
+        </g>
+      </svg>`;
+      return 'data:image/svg+xml;utf8,'+encodeURIComponent(svg);
+    }
+    function svgBrain(){
+      const svg = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 64'>
+        <defs><linearGradient id='g2' x1='0' x2='1'><stop offset='0%' stop-color='#19c6ff'/><stop offset='100%' stop-color='#ff5cf0'/></linearGradient></defs>
+        <path d='M10 44c26-24 52-24 78 0 26-24 52-24 78 0' fill='none' stroke='url(#g2)' stroke-width='8' stroke-linecap='round'/>
+        <circle cx='88' cy='22' r='6' fill='#19c6ff'/>
+        <circle cx='132' cy='22' r='6' fill='#ff5cf0'/>
+      </svg>`;
+      return 'data:image/svg+xml;utf8,'+encodeURIComponent(svg);
+    }
+    function svgCompass(){
+      const svg = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 64'>
+        <defs><linearGradient id='g3' x1='0' x2='1'><stop offset='0%' stop-color='#7c5cff'/><stop offset='100%' stop-color='#19c6ff'/></linearGradient></defs>
+        <circle cx='110' cy='32' r='22' fill='none' stroke='url(#g3)' stroke-width='6'/>
+        <path d='M110 14l8 18-18 8 10-26z' fill='#ff5cf0'/>
+      </svg>`;
+      return 'data:image/svg+xml;utf8,'+encodeURIComponent(svg);
+    }
+    function svgPhoenix(){
+      const svg = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 64'>
+        <defs><linearGradient id='g4' x1='0' x2='1'><stop offset='0%' stop-color='#ff8a00'/><stop offset='100%' stop-color='#ff5cf0'/></linearGradient></defs>
+        <path d='M12 48c28-8 40-18 52-30 8 16 20 22 44 24 10-6 18-14 28-26-4 18-10 28-22 36-20 2-38 2-60-4-12 4-26 4-42 0z' fill='url(#g4)'/>
+      </svg>`;
+      return 'data:image/svg+xml;utf8,'+encodeURIComponent(svg);
+    }
+
+    function applyLogo(src){
+      if(!logoImg) return;
+      if(!src){ logoImg.removeAttribute('src'); localStorage.removeItem('mc_logo_src'); return; }
+      logoImg.src = src; localStorage.setItem('mc_logo_src', src);
+    }
+    function setLogoByKind(kind){
+      let src='';
+      if(kind==='puzzle') src = svgPuzzle();
+      if(kind==='brain') src = svgBrain();
+      if(kind==='compass') src = svgCompass();
+      if(kind==='phoenix') src = svgPhoenix();
+      if(kind==='none') src = '';
+      if(src!==undefined){ applyLogo(src); localStorage.setItem('mc_logo_kind', kind||''); }
+    }
+
+    // Init saved logo (defaults to puzzle on first load)
+    (function(){
+      const savedSrc = localStorage.getItem('mc_logo_src');
+      const savedKind = localStorage.getItem('mc_logo_kind');
+      if(savedSrc){ logoImg.src = savedSrc; }
+      if(savedKind && logoSelect){ logoSelect.value = savedKind; }
+      if(!savedSrc && !savedKind){ setLogoByKind('puzzle'); if(logoSelect) logoSelect.value = 'puzzle'; }
+    })();
+
+    // Events for logo controls
+    if(logoSelect){ logoSelect.addEventListener('change', (e)=> setLogoByKind(e.target.value)); }
+    if(logoUpload){ logoUpload.addEventListener('change', (e)=>{
+      const file = e.target.files && e.target.files[0]; if(!file) return;
+      const reader = new FileReader();
+      reader.onload = () => { applyLogo(reader.result); localStorage.setItem('mc_logo_kind',''); if(logoSelect) logoSelect.value=''; };
+      reader.readAsDataURL(file);
+    }); }
+    if(clearLogoBtn){ clearLogoBtn.addEventListener('click', ()=>{ applyLogo(''); if(logoSelect) logoSelect.value=''; }); }
+  </script>
+</body>
+</html>
